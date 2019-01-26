@@ -10,14 +10,20 @@ public class PerformAction : MonoBehaviour
     public float coolDown;
     public Color coolDownColor;
 
+    private Color initialColor;
     private float currentCoolDown = 0;
-    
+
+    void Start()
+    {
+        initialColor = GetComponent<Image>().color;
+    }
+
     void Update()
     {
         if (currentCoolDown > Time.time)
             GetComponent<Image>().color = coolDownColor;
         else
-            GetComponent<Image>().color = Color.white;
+            GetComponent<Image>().color = initialColor;
     }
 
     public void DoTheThing()
