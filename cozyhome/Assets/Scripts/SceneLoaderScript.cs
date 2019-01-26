@@ -22,15 +22,4 @@ public class SceneLoaderScript : MonoBehaviour
     {
         SceneManager.LoadScene("AbilityMenu");
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -43,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
         // what is the distance to the center. The closer you get, the more close you are to winning
         float distance = Vector2.Distance(transform.position, Vector2.zero);
         
-        if (gmc == null) { gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>(); }
+        if (gmc == null) { gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>(); }
         Debug.Log(distance);
         gmc.OnMoveCloser(1-distance/maxDistance);
     }

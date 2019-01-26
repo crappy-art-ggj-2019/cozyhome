@@ -5,17 +5,12 @@ using UnityEngine;
 public class CollisionScript : MonoBehaviour
 {
     public List<string> blocks;
+    private Collider2D ourCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ourCollider = GetComponent<Collider2D>();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -26,7 +21,7 @@ public class CollisionScript : MonoBehaviour
             if (!blocks.Contains(collision.gameObject.tag))
             {
                 // ignore this specific collision
-                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), ourCollider);
             }
 
             // if it's a player and supposed to block

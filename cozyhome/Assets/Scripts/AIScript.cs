@@ -34,7 +34,7 @@ public class AIScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManagerScript gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>();
+            GameManagerScript gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
             gmc.OnMonsterGet();
         }
     }

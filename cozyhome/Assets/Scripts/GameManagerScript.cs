@@ -111,29 +111,29 @@ public class GameManagerScript : MonoBehaviour
         currentstate = state;
         if (currentstate == GameState.MainMenu)
         {
-            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
+            var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadMenuScene();
         }
         else if (currentstate == GameState.Selection)
         {
-            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
+            var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadAbilityScene();
         }
         else if (currentstate == GameState.GameCycle)
         {
             Debug.Log("state:" + currentstate + " gamestate should be " + GameState.GameCycle);
-            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
+            var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadGameScene();
         }
         else if (currentstate == GameState.GameOver)
         {
-            uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
+            uiM = GameObject.Find("/UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(state.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }
         else if (currentstate == GameState.GameWon)
         {
-            uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
+            uiM = GameObject.Find("/UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(state.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }

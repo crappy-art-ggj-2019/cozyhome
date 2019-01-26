@@ -5,13 +5,15 @@ using UnityEngine;
 public class HumanAIScript : MonoBehaviour
 {
     float[] direction;
-    
+    private Rigidbody2D ourRigidbody2D;
+
     // Start is called before the first frame update
     void Start()
     {
         direction = new float[2];
-        
+        ourRigidbody2D = GetComponent<Rigidbody2D>();
     }
+
     void randomizeDirection()
     {
         direction[0] = Random.Range(-10f, 10f);
@@ -22,18 +24,19 @@ public class HumanAIScript : MonoBehaviour
     void Update()
     {
         
-        if (GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+        if (ourRigidbody2D.velocity == Vector2.zero)
         {
             randomizeDirection();
             
         }
-        GetComponent<Rigidbody2D>().velocity = new Vector2(direction[0], direction[1]);
+        ourRigidbody2D.velocity = new Vector2(direction[0], direction[1]);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManagerScript gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>();
+            GameManagerScript gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
             gmc.OnMonsterGet();
         }
     }
