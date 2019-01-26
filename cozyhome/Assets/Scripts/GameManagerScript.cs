@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver }
+    public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon }
     
     enum playerEntity { Human, Demon }
 
-    private const float triggerDistance = 0.01f;
-    private const float timeOfDeath = 3f;
+    private const float gameEndingDisplayTime = 3f;
 
     
     [SerializeField] enum winCondition { Human, Demon }
@@ -18,8 +15,10 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] int highScore;
     [SerializeField] PlayField playField;
     [SerializeField] UIManagerScript uiM;
+    [SerializeField] playerEntity currentPlayerMode = playerEntity.Human;
 
-    float dieSwitchTime;
+
+    float gameEndingDisplaying;
     
     private void Awake()
     {
@@ -57,23 +56,34 @@ public class GameManagerScript : MonoBehaviour
         {
             //
         }
-        if (currentstate == GameState.GameOver)
+        else if (currentstate == GameState.GameOver || currentstate == GameState.GameWon)
         {
-            if (Time.time > dieSwitchTime)
+            if (Time.time > gameEndingDisplaying)
                 setState(GameState.MainMenu);
         }
     }
 
-    public void StartLevel()
+    public void StartLevelHuman()
     {
-        Debug.Log("Startlevel");
+        Debug.Log("Startlevel human");
+        currentPlayerMode = playerEntity.Human;
+        setState(GameState.GameCycle);
+    }
+
+    public void StartLevelDemon()
+    {
+        Debug.Log("Startlevel demon");
+        currentPlayerMode = playerEntity.Demon;
         setState(GameState.GameCycle);
     }
 
 
     public void OnHouseEntry()
     {
-        setState(GameState.GameOver);
+        if (currentPlayerMode == playerEntity.Demon)
+            setState(GameState.GameOver);
+        else
+            setState(GameState.GameWon);
     }
 
 
@@ -85,7 +95,13 @@ public class GameManagerScript : MonoBehaviour
         {
             uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(state.ToString());
-            dieSwitchTime = Time.time + timeOfDeath;
+            gameEndingDisplaying = Time.time + gameEndingDisplayTime;
+        }
+        else if (currentstate == GameState.GameWon)
+        {
+            uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
+            uiM.setStateHUD(state.ToString());
+            gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }
         else if (currentstate == GameState.MainMenu)
         {
