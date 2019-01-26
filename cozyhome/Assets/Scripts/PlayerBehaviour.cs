@@ -31,4 +31,10 @@ public class PlayerBehaviour : MonoBehaviour
         if (transform.position != targetPosition)
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
     }
+
+    public void StopMoving()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        targetPosition = transform.position;
+    }
 }
