@@ -15,7 +15,8 @@ public class SceneLoaderScript : MonoBehaviour
     }
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("GamePlay");
+        Debug.Log("Start game");
+        SceneManager.LoadScene(1);
     }
     void Start()
     {
