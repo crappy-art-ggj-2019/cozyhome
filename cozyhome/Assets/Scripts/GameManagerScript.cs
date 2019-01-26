@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    [SerializeField] enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver }
-
+    enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver }
+    
+    enum playerEntity { Human, Demon }
+    
+    
+    [SerializeField] enum winCondition { Human, Demon }
+    [SerializeField] Camera playView;
+    [SerializeField] GameState currentstate;
+    [SerializeField] int highScore;
+    [SerializeField] PlayField playField;
+    
     private void Awake()
     {
+        //Making Gamestate global, initial call in menu
+        
         SetupSingleton();
 
     }
@@ -25,6 +36,11 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("Gamestate"))
+        {
+            //currentstate = PlayerPrefs.GetInt("Currentstate");
+        }
+        //initialize states
         
     }
 
@@ -33,4 +49,10 @@ public class GameManagerScript : MonoBehaviour
     {
         
     }
+    public void setState(int state)
+    {
+        currentstate = (GameState)state;
+    }
+
+
 }
