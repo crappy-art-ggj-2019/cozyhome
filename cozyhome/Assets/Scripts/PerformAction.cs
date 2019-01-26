@@ -22,9 +22,9 @@ public class PerformAction : MonoBehaviour
 
     public void DoTheThing()
     {
-        print("Doing the thing!");
+        //print("Doing the thing!");
 
-        if (Time.time < currentCoolDown)
+        if (Time.time > currentCoolDown)
         {
             Instantiate(resolutionPrefab, ownerObject.position, ownerObject.rotation);
             currentCoolDown = Time.time + coolDown;

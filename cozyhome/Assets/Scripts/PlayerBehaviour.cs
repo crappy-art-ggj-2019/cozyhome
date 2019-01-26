@@ -20,7 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         // only follow set the targetPosition when the user clicks
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= 144)
         {
             // set targetPosition to the mouseposition relative to the screen
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -43,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
         float dinstance = Vector2.Distance(transform.position, Vector2.zero);
         
         if (gmc == null) { gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>(); }
-        Debug.Log(dinstance);
+        //Debug.Log(dinstance);
         gmc.OnMoveCloser(1-(1/dinstance));
     }
 }
