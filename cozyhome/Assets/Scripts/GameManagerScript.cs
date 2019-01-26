@@ -29,6 +29,9 @@ public class GameManagerScript : MonoBehaviour
         
         SetupSingleton();
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
+        if (currentstate == GameState.MainMenu && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     private void SetupSingleton()
