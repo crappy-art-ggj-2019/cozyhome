@@ -115,7 +115,9 @@ public class GameManagerScript : MonoBehaviour
     }
     public void OnMoveCloser(float distance)
     {
-        if (uiM != null) { uiM.filldistance(distance); } else { uiM = GameObject.Find("HUDCanvas").GetComponent<UIManagerScript>(); }
+        uiM = GameObject.Find("UIManager")?.GetComponent<UIManagerScript>();
+        if (uiM != null)
+            uiM.filldistance(distance); 
     }
     public void OnAvatarGet()
     {
