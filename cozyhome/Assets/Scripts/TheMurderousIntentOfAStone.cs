@@ -11,7 +11,7 @@ public class TheMurderousIntentOfAStone : MonoBehaviour
     void Start()
     {
         // target the "Enemy" that was spawned first
-        victim = GameObject.FindGameObjectWithTag("Enemy").transform;   // please don't add multiple enemies k thnx bye
+        victim = GameObject.Find("monster").transform;
     }
 
     // Update is called once per frame

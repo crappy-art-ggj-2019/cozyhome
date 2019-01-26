@@ -184,16 +184,12 @@ public class GameManagerScript : MonoBehaviour
                 cam.Follow = human.transform;
                 monster.AddComponent<MonsterAIScript>();
                 human.AddComponent<PlayerBehaviour>();
-                monster.tag = "Enemy";
-                human.tag = "Player";
             }
             else
             {
                 cam.Follow = monster.transform;
                 human.AddComponent<HumanAIScript>();
                 monster.AddComponent<PlayerBehaviour>();
-                human.tag = "Enemy";
-                monster.tag = "Player";
             }
 
             if ((currentPlayerMode == playerEntity.Human && currentObjective == objective.TakeHome) 
