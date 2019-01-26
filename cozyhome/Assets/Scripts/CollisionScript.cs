@@ -25,7 +25,7 @@ public class CollisionScript : MonoBehaviour
             }
 
             // if it's a player and supposed to block
-            if (block == "Player" && collision.gameObject.CompareTag(block))
+            if (/*block == "Attacker" &&*/ collision.gameObject.CompareTag(block))
                 // call its "StopMoving" function to make it stop moving
                 collision.gameObject.GetComponent<PlayerBehaviour>().StopMoving();
         }

@@ -106,9 +106,9 @@ public class GameManagerScript : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnHouseEntry()
+    public void OnAttackerHouseEntry()
     {
-        if (currentPlayerMode == playerEntity.Demon)
+        if (currentObjective == objective.DefendHome)
             setState(GameState.GameOver);
         else
             setState(GameState.GameWon);
@@ -117,44 +117,48 @@ public class GameManagerScript : MonoBehaviour
     {
         if (uiM != null) { uiM.filldistance(distance); } else { uiM = GameObject.Find("HUDCanvas").GetComponent<UIManagerScript>(); }
     }
-    public void OnMonsterGet()
+    public void OnAvatarGet()
     {
-        if (currentPlayerMode == playerEntity.Human)
+        if (currentObjective == objective.TakeHome)
             setState(GameState.GameOver);
         else
             setState(GameState.GameWon);
     }
 
-    private void setState(GameState state)
+    private void setState(GameState newState)
     {
         Debug.Log("Set gamestate");
-        currentstate = state;
-        if (currentstate == GameState.MainMenu)
+        if (newState == GameState.MainMenu)
         {
+            currentstate = newState;
             var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadMenuScene();
         }
-        else if (currentstate == GameState.Selection)
+        else if (newState == GameState.Selection)
         {
+            currentstate = newState;
             var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadAbilityScene();
         }
-        else if (currentstate == GameState.GameCycle)
+        else if (newState == GameState.GameCycle)
         {
+            currentstate = newState;
             Debug.Log("state:" + currentstate + " gamestate should be " + GameState.GameCycle);
             var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadGameScene();
         }
-        else if (currentstate == GameState.GameOver)
+        else if (currentstate == GameState.GameCycle && newState == GameState.GameOver)
         {
+            currentstate = newState;
             uiM = GameObject.Find("/UIManager").GetComponent<UIManagerScript>();
-            uiM.setStateHUD(state.ToString());
+            uiM.setStateHUD(newState.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }
-        else if (currentstate == GameState.GameWon)
+        else if (currentstate == GameState.GameCycle && newState == GameState.GameWon)
         {
+            currentstate = newState;
             uiM = GameObject.Find("/UIManager").GetComponent<UIManagerScript>();
-            uiM.setStateHUD(state.ToString());
+            uiM.setStateHUD(newState.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }
     }
@@ -180,16 +184,12 @@ public class GameManagerScript : MonoBehaviour
                 cam.Follow = human.transform;
                 monster.AddComponent<MonsterAIScript>();
                 human.AddComponent<PlayerBehaviour>();
-                monster.tag = string.Empty;
-                human.tag = "Player";
             }
             else
             {
                 cam.Follow = monster.transform;
                 human.AddComponent<HumanAIScript>();
                 monster.AddComponent<PlayerBehaviour>();
-                human.tag = string.Empty;
-                monster.tag = "Player";
             }
 
             if ((currentPlayerMode == playerEntity.Human && currentObjective == objective.TakeHome) 
@@ -197,11 +197,15 @@ public class GameManagerScript : MonoBehaviour
             {
                 human.transform.position = startPostionAttacker.position;
                 monster.transform.position = startPostionDefender.position;
+                human.tag = "Attacker";
+                monster.tag = "Defender";
             }
             else
             {
                 human.transform.position = startPostionDefender.position;
                 monster.transform.position = startPostionAttacker.position;
+                human.tag = "Defender";
+                monster.tag = "Attacker";
             }
         }
     }
