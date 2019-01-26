@@ -6,11 +6,11 @@ using TMPro;
 
 public class UIManagerScript : MonoBehaviour
 {
-    GameObject Canvas;
+    Canvas Canvas;
     // Start is called before the first frame update
     void Start()
     {
-        Canvas = GameObject.Find("HUDCanvas").GetComponent<GameObject>();
+        Canvas = GameObject.Find("HUDCanvas").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -20,6 +20,8 @@ public class UIManagerScript : MonoBehaviour
     }
     public void setStateHUD(string text)
     {
-        Canvas.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI stateText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        stateText.text = text;
+
     }
 }

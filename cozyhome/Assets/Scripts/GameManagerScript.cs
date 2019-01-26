@@ -14,6 +14,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GameState currentstate;
     [SerializeField] int highScore;
     [SerializeField] PlayField playField;
+    [SerializeField] UIManagerScript uiM;
     
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class GameManagerScript : MonoBehaviour
             //currentstate = PlayerPrefs.GetInt("Currentstate");
         }
         //initialize states
+        setState("Playing");
         
     }
 
@@ -49,9 +51,12 @@ public class GameManagerScript : MonoBehaviour
     {
         
     }
-    public void setState(int state)
+    public void setState(string state)
     {
-        currentstate = (GameState)state;
+        //currentstate = (GameState)state;
+        uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
+        uiM.setStateHUD(state);
+
     }
 
 
