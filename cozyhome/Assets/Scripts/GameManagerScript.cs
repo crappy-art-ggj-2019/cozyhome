@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -25,8 +26,9 @@ public class GameManagerScript : MonoBehaviour
         //Making Gamestate global, initial call in menu
         
         SetupSingleton();
-
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
+
     private void SetupSingleton()
     {
         if (FindObjectsOfType(GetType()).Length > 1)
@@ -135,5 +137,34 @@ public class GameManagerScript : MonoBehaviour
             uiM.setStateHUD(state.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }
+    }
+
+    private void AfterSceneLoad()
+    {
+        if (currentstate == GameState.GameCycle)
+        {
+            var human = GameObject.Find("/human");
+            var monster = GameObject.Find("/monster");
+            var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
+
+            // Set the different views and objectives
+            if (currentPlayerMode == playerEntity.Human)
+            {
+                cam.Follow = human.transform;
+                monster.AddComponent<MonsterAIScript>();
+                human.AddComponent<PlayerBehaviour>();
+            }
+            else
+            {
+                cam.Follow = monster.transform;
+                human.AddComponent<HumanAIScript>();
+                monster.AddComponent<PlayerBehaviour>();
+            }
+
+        }
+    }
+    private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+    {
+        AfterSceneLoad();
     }
 }
