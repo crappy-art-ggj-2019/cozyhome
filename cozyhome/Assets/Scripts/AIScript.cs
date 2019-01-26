@@ -31,6 +31,10 @@ public class AIScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManagerScript gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>();
+            gmc.OnMonsterGet();
+        }
     }
 }

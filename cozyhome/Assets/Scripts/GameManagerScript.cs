@@ -86,7 +86,13 @@ public class GameManagerScript : MonoBehaviour
             setState(GameState.GameWon);
     }
 
-
+    public void OnMonsterGet()
+    {
+        if (currentPlayerMode == playerEntity.Human)
+            setState(GameState.GameOver);
+        else
+            setState(GameState.GameWon);
+    }
     private void setState(GameState state)
     {
         Debug.Log("Set gamestate");
