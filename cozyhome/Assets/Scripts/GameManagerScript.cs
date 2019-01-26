@@ -16,7 +16,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] Camera playView;
     [SerializeField] GameState currentstate;
     [SerializeField] int highScore;
-    [SerializeField] PlayField playField = new PlayField();
+    //[SerializeField] PlayField playField;
     [SerializeField] UIManagerScript uiM;
 
     float dieSwitchTime;
@@ -67,6 +67,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void StartLevel()
     {
+        Debug.Log("Startlevel");
         setState(GameState.GameCycle);
     }
 
@@ -79,6 +80,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void setState(GameState state)
     {
+        Debug.Log("Set gamestate");
         currentstate = state;
         if (currentstate == GameState.GameOver)
         {
@@ -93,6 +95,7 @@ public class GameManagerScript : MonoBehaviour
         }
         else if (currentstate == GameState.GameCycle)
         {
+            Debug.Log("state:" + currentstate + " gamestate should be " + GameState.GameCycle);
             var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
             sl.LoadGameScene();
         }
