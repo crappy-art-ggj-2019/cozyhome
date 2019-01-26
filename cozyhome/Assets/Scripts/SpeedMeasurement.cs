@@ -23,8 +23,6 @@ public class SpeedMeasurement : MonoBehaviour
 
         animator.SetFloat("Speed", speed);
 
-        Debug.Log(speed);
-
         lastLocation = this.transform.position;
     }
 }
