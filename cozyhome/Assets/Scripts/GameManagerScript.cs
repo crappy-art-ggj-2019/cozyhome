@@ -15,7 +15,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] int highScore;
     [SerializeField] PlayField playField;
     [SerializeField] UIManagerScript uiM;
-    [SerializeField] playerEntity currentPlayerMode;
+    [SerializeField] playerEntity currentPlayerMode = playerEntity.Human;
 
 
     float gameEndingDisplaying;
@@ -56,7 +56,7 @@ public class GameManagerScript : MonoBehaviour
         {
             //
         }
-        if (currentstate == GameState.GameOver || currentstate == GameState.GameWon)
+        else if (currentstate == GameState.GameOver || currentstate == GameState.GameWon)
         {
             if (Time.time > gameEndingDisplaying)
                 setState(GameState.MainMenu);
