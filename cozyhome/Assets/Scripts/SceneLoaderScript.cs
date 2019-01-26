@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoaderScript : MonoBehaviour
 {
-
-
+    
+    
 
     // Start is called before the first frame update
     public void LoadMenuScene()
@@ -26,4 +27,5 @@ public class SceneLoaderScript : MonoBehaviour
     {
         SceneManager.LoadScene("SecretEnding");
     }
+    
 }
