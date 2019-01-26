@@ -18,10 +18,20 @@ public class UIManagerScript : MonoBehaviour
     {
         
     }
+    public void setScoreHUD(string text)
+    {
+        TextMeshProUGUI scoreText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        scoreText.text = text;
+    }
     public void setStateHUD(string text)
     {
         TextMeshProUGUI stateText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[1];
         stateText.text = text;
 
+    }
+    public void setInventoryHUD(string text)
+    {
+        TextMeshProUGUI inventoryText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[2];
+        inventoryText.text = text;
     }
 }
