@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float movementSpeed = 5;
+    public GameObject barricade;
 
     // where to move to
     private Vector3 targetPosition;
@@ -26,6 +27,13 @@ public class PlayerBehaviour : MonoBehaviour
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // player must not move in 3D!!
             targetPosition.z = 0;
+        }
+
+        // if right click
+        if (Input.GetMouseButtonDown(1))
+        {
+            // spawn a barricade under you
+            Instantiate(barricade, transform.position, transform.rotation);
         }
 
         if (transform.position != targetPosition)

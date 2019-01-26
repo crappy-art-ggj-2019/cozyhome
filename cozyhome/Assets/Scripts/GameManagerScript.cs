@@ -67,13 +67,19 @@ public class GameManagerScript : MonoBehaviour
     {
         Debug.Log("Startlevel human");
         currentPlayerMode = playerEntity.Human;
-        setState(GameState.GameCycle);
+        setState(GameState.Selection);
     }
 
     public void StartLevelDemon()
     {
         Debug.Log("Startlevel demon");
         currentPlayerMode = playerEntity.Demon;
+        setState(GameState.Selection);
+    }
+
+    public void StartGameplay()
+    {
+        Debug.Log("Start gameplay");
         setState(GameState.GameCycle);
     }
 
@@ -93,11 +99,28 @@ public class GameManagerScript : MonoBehaviour
         else
             setState(GameState.GameWon);
     }
+
     private void setState(GameState state)
     {
         Debug.Log("Set gamestate");
         currentstate = state;
-        if (currentstate == GameState.GameOver)
+        if (currentstate == GameState.MainMenu)
+        {
+            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
+            sl.LoadMenuScene();
+        }
+        else if (currentstate == GameState.Selection)
+        {
+            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
+            sl.LoadAbilityScene();
+        }
+        else if (currentstate == GameState.GameCycle)
+        {
+            Debug.Log("state:" + currentstate + " gamestate should be " + GameState.GameCycle);
+            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
+            sl.LoadGameScene();
+        }
+        else if (currentstate == GameState.GameOver)
         {
             uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(state.ToString());
@@ -108,17 +131,6 @@ public class GameManagerScript : MonoBehaviour
             uiM = GameObject.Find("UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(state.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
-        }
-        else if (currentstate == GameState.MainMenu)
-        {
-            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
-            sl.LoadMenuScene();
-        }
-        else if (currentstate == GameState.GameCycle)
-        {
-            Debug.Log("state:" + currentstate + " gamestate should be " + GameState.GameCycle);
-            var sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderScript>();
-            sl.LoadGameScene();
         }
     }
 }
