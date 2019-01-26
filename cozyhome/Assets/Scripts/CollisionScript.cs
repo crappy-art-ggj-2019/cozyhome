@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollisionScript : MonoBehaviour
 {
-    public string blocks;
+    public string[] blocks;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +20,10 @@ public class CollisionScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.CompareTag(blocks))
-            collision.gameObject.GetComponent<PlayerBehaviour>().StopMoving();
+        foreach (string block in blocks)
+        {
+            if (block == "Player" && collision.gameObject.CompareTag(block))
+                collision.gameObject.GetComponent<PlayerBehaviour>().StopMoving();
+        }
     }
 }
