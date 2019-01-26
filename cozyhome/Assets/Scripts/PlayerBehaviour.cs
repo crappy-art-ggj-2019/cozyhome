@@ -22,12 +22,12 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {    //this can be improved by taking the barheight.
-        Debug.Log("X: "+Input.mousePosition.y+ " minpos: " + -(Screen.width/Screen.height) / 2 + 50);
+        //Debug.Log("X: "+Input.mousePosition.y+ " minpos: " + -(Screen.width/Screen.height) / 2 + 50);
         //Debug.Log();
+        //print(Input.mousePosition.y >= Screen.height * 144 / 720);
         // only follow set the targetPosition when the user clicks
-        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= -(Screen.width / Screen.height) / 2 + 50) 
+        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= Screen.height * 144 / 720) 
         {
-            
             // set targetPosition to the mouseposition relative to the screen
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // player must not move in 3D!!
@@ -48,7 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
         // what is the distance to the center. The closer you get, the more close you are to winning
         float distance = Vector2.Distance(transform.position, Vector2.zero);
         
-        Debug.Log(distance);
+        //Debug.Log(distance);
         gmc.OnMoveCloser(1-distance/maxDistance);
     }
 }
