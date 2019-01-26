@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class HomeCollider : MonoBehaviour
 {
+    private GameManagerScript gmc;
+
+    void Awake()
+    {
+        gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (gmc.currentObjective == GameManagerScript.objective.TakeHome && collision.tag == "Player")
         {
-            var gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
             gmc.OnHouseEntry();
         }
     }
