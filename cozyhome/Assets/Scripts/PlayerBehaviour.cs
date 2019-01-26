@@ -12,7 +12,8 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // stop player from moving to 0,0 by default
+        targetPosition = transform.position;
     }
 
     // Update is called once per frame
