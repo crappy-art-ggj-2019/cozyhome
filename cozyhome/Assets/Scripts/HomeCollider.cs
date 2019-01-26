@@ -14,9 +14,9 @@ public class HomeCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gmc.currentObjective == GameManagerScript.objective.TakeHome && collision.tag == "Player")
+        if (gmc.currentObjective == GameManagerScript.objective.TakeHome && collision.tag == "Attacker")
         {
-            gmc.OnHouseEntry();
+            gmc.OnAttackerHouseEntry();
         }
     }
 }

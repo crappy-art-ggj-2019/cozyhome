@@ -6,12 +6,14 @@ public class HumanAIScript : MonoBehaviour
 {
     float[] direction;
     private Rigidbody2D ourRigidbody2D;
+    private GameManagerScript gmc;
 
     // Start is called before the first frame update
     void Start()
     {
         direction = new float[2];
         ourRigidbody2D = GetComponent<Rigidbody2D>();
+        gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
     }
 
     void randomizeDirection()
@@ -34,10 +36,9 @@ public class HumanAIScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Defender" || collision.gameObject.tag == "Attacker")
         {
-            GameManagerScript gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
-            gmc.OnMonsterGet();
+            gmc.OnAvatarGet();
         }
     }
 }
