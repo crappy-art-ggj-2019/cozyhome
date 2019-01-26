@@ -27,22 +27,27 @@ public class GameManagerScript : MonoBehaviour
     {
         //Making Gamestate global, initial call in menu
         
-        SetupSingleton();
+        var doWork = SetupSingleton();
+        if (!doWork)
+            return;
+
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
 
         if (currentstate == GameState.MainMenu && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
             UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
-    private void SetupSingleton()
+    private bool SetupSingleton()
     {
         if (FindObjectsOfType(GetType()).Length > 1)
         {
             Destroy(gameObject);
+            return false;
         }
         else
         {
             DontDestroyOnLoad(gameObject);
+            return true;
         }
     }
     // Start is called before the first frame update
