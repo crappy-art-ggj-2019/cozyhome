@@ -433,7 +433,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1269638456}
+      - m_Target: {fileID: 8745707875421592182}
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -494,7 +494,6 @@ GameObject:
   - component: {fileID: 1269638455}
   - component: {fileID: 1269638454}
   - component: {fileID: 1269638453}
-  - component: {fileID: 1269638456}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -561,18 +560,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1269638456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269638452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c11c824c687d944bf5a100e5ccd622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1694476375
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,3 +924,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4300646fd269b8541972bf00736551f9, type: 3}
+--- !u!114 &8745707875421592182 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8745707874024237301, guid: 4300646fd269b8541972bf00736551f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8745707875421592181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5e0ca520233ad49bdd0982d1f17f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
