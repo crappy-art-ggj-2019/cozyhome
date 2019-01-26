@@ -19,7 +19,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {    //this can be improved by taking the barheight.
         Debug.Log("X: "+Input.mousePosition.y+ " minpos: " + -(Screen.width/Screen.height) / 2 + 50);
         //Debug.Log();
         // only follow set the targetPosition when the user clicks
