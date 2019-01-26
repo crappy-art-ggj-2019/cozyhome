@@ -20,9 +20,12 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("X: "+Input.mousePosition.y+ " minpos: " + -(Screen.width/Screen.height) / 2 + 50);
+        //Debug.Log();
         // only follow set the targetPosition when the user clicks
-        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= 144)
+        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= -(Screen.width / Screen.height) / 2 + 50) 
         {
+            
             // set targetPosition to the mouseposition relative to the screen
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // player must not move in 3D!!
