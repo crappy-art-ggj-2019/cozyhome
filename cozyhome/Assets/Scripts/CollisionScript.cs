@@ -18,7 +18,7 @@ public class CollisionScript : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         foreach (string block in blocks)
         {
