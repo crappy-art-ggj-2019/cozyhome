@@ -4,6 +4,7 @@ cozyhome/[Oo]bj/
 cozyhome/[Bb]uild/
 cozyhome/[Bb]uilds/
 cozyhome/Assets/AssetStoreTools*
+cozyhome/Assets/Plugins/
 
 # Visual Studio cache directory
 .vs/
