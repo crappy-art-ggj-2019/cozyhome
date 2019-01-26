@@ -94,7 +94,17 @@ public class GameManagerScript : MonoBehaviour
         Debug.Log("Start gameplay");
         setState(GameState.GameCycle);
     }
-
+    public void StartMainMenu()
+    {
+        Debug.Log("Start Menu");
+        setState(GameState.MainMenu);
+    }
+    
+    public void QuitGame()
+    {
+        Debug.Log("Quit game");
+        Application.Quit();
+    }
 
     public void OnHouseEntry()
     {

@@ -22,4 +22,8 @@ public class SceneLoaderScript : MonoBehaviour
     {
         SceneManager.LoadScene("AbilityMenu");
     }
+    public void LoadSecretLevel()
+    {
+        SceneManager.LoadScene("SecretEnding");
+    }
 }
