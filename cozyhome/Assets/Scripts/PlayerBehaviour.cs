@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float movementSpeed = 5;
-    public GameObject barricade;
 
     // where to move to
     private Vector3 targetPosition;
@@ -29,13 +28,6 @@ public class PlayerBehaviour : MonoBehaviour
             targetPosition.z = 0;
         }
 
-        // if right click
-        if (Input.GetMouseButtonDown(1))
-        {
-            // spawn a barricade under you
-            Instantiate(barricade, transform.position, transform.rotation);
-        }
-
         if (transform.position != targetPosition)
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
     }
@@ -44,5 +36,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         targetPosition = transform.position;
+    }
+    private void checkwinstate()
+    {
+
     }
 }
