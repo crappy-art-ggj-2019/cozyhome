@@ -91,7 +91,10 @@ public class GameManagerScript : MonoBehaviour
         else
             setState(GameState.GameWon);
     }
-
+    public void OnMoveCloser(float distance)
+    {
+        if (uiM != null) { uiM.filldistance(distance); } else { uiM = GameObject.Find("HUDCanvas").GetComponent<UIManagerScript>(); }
+    }
     public void OnMonsterGet()
     {
         if (currentPlayerMode == playerEntity.Human)

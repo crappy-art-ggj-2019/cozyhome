@@ -10,6 +10,7 @@ public class AIScript : MonoBehaviour
     void Start()
     {
         direction = new float[2];
+        randomizeDirection();
         
     }
     void randomizeDirection()

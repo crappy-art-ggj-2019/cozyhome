@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float movementSpeed = 5;
-
+    GameManagerScript gmc;
     // where to move to
     private Vector3 targetPosition;
 
@@ -27,7 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
             // player must not move in 3D!!
             targetPosition.z = 0;
         }
-
+        checkwinstate();
         if (transform.position != targetPosition)
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
     }
@@ -39,6 +39,11 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void checkwinstate()
     {
-
+        // what is the distance to the center. The closer you get, the more close you are to winning
+        float dinstance = Vector2.Distance(transform.position, Vector2.zero);
+        
+        if (gmc == null) { gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>(); }
+        Debug.Log(dinstance);
+        gmc.OnMoveCloser(1-(1/dinstance));
     }
 }
