@@ -32,6 +32,11 @@ public class UIManagerScript : MonoBehaviour
         }
 
     }
+    public void filldistance(float distance)
+    {
+        Image distanceimage = Canvas.GetComponentInChildren<Image>();
+        distanceimage.fillAmount = distance;
+    }
     public void setInventoryHUD(string text)
     {
         TextMeshProUGUI inventoryText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[2];
