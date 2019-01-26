@@ -21,7 +21,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         // only follow set the targetPosition when the user clicks
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= 144)
         {
             // set targetPosition to the mouseposition relative to the screen
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
