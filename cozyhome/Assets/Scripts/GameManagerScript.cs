@@ -14,9 +14,9 @@ public class GameManagerScript : MonoBehaviour
     
     [SerializeField] enum winCondition { Human, Demon }
     [SerializeField] Camera playView;
-    [SerializeField] GameState currentstate;
+    [SerializeField] GameState currentstate = GameState.MainMenu;
     [SerializeField] int highScore;
-    //[SerializeField] PlayField playField;
+    [SerializeField] PlayField playField;
     [SerializeField] UIManagerScript uiM;
 
     float dieSwitchTime;
@@ -47,7 +47,6 @@ public class GameManagerScript : MonoBehaviour
             //currentstate = PlayerPrefs.GetInt("Currentstate");
         }
         //initialize states
-        setState(GameState.MainMenu);
     }
 
 
