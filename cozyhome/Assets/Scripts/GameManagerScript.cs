@@ -4,19 +4,21 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon }
-    
-    enum playerEntity { Human, Demon }
+
+    public enum playerEntity { Human, Demon }
+    public enum objective { TakeHome, DefendHome }
 
     private const float gameEndingDisplayTime = 3f;
 
     
-    [SerializeField] enum winCondition { Human, Demon }
+
     [SerializeField] Camera playView;
     [SerializeField] GameState currentstate = GameState.MainMenu;
     [SerializeField] int highScore;
     [SerializeField] PlayField playField;
     [SerializeField] UIManagerScript uiM;
     [SerializeField] playerEntity currentPlayerMode = playerEntity.Human;
+    [SerializeField] public objective currentObjective = objective.DefendHome;
 
 
     float gameEndingDisplaying;
@@ -143,6 +145,13 @@ public class GameManagerScript : MonoBehaviour
     {
         if (currentstate == GameState.GameCycle)
         {
+            if (currentObjective == objective.TakeHome)
+                currentObjective = objective.DefendHome;
+            else 
+                currentObjective = objective.TakeHome;
+
+            var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
+            var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
             var human = GameObject.Find("/human");
             var monster = GameObject.Find("/monster");
             var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
@@ -153,14 +162,29 @@ public class GameManagerScript : MonoBehaviour
                 cam.Follow = human.transform;
                 monster.AddComponent<MonsterAIScript>();
                 human.AddComponent<PlayerBehaviour>();
+                monster.tag = string.Empty;
+                human.tag = "Player";
             }
             else
             {
                 cam.Follow = monster.transform;
                 human.AddComponent<HumanAIScript>();
                 monster.AddComponent<PlayerBehaviour>();
+                human.tag = string.Empty;
+                monster.tag = "Player";
             }
 
+            if ((currentPlayerMode == playerEntity.Human && currentObjective == objective.TakeHome) 
+                || (currentPlayerMode == playerEntity.Demon && currentObjective == objective.DefendHome))
+            {
+                human.transform.position = startPostionAttacker.position;
+                monster.transform.position = startPostionDefender.position;
+            }
+            else
+            {
+                human.transform.position = startPostionDefender.position;
+                monster.transform.position = startPostionAttacker.position;
+            }
         }
     }
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)

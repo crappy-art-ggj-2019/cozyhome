@@ -15,6 +15,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         // stop player from moving to 0,0 by default
         targetPosition = transform.position;
+
+        gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
     }
 
     // Update is called once per frame
@@ -46,7 +48,6 @@ public class PlayerBehaviour : MonoBehaviour
         // what is the distance to the center. The closer you get, the more close you are to winning
         float distance = Vector2.Distance(transform.position, Vector2.zero);
         
-        if (gmc == null) { gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>(); }
         Debug.Log(distance);
         gmc.OnMoveCloser(1-distance/maxDistance);
     }
