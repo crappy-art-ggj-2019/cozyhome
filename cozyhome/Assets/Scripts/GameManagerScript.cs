@@ -180,7 +180,7 @@ public class GameManagerScript : MonoBehaviour
                 cam.Follow = human.transform;
                 monster.AddComponent<MonsterAIScript>();
                 human.AddComponent<PlayerBehaviour>();
-                monster.tag = string.Empty;
+                monster.tag = "Enemy";
                 human.tag = "Player";
             }
             else
@@ -188,7 +188,7 @@ public class GameManagerScript : MonoBehaviour
                 cam.Follow = monster.transform;
                 human.AddComponent<HumanAIScript>();
                 monster.AddComponent<PlayerBehaviour>();
-                human.tag = string.Empty;
+                human.tag = "Enemy";
                 monster.tag = "Player";
             }
 
