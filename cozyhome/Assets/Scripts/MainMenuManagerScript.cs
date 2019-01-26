@@ -17,12 +17,20 @@ public class MainMenuManagerScript : MonoBehaviour
     {
         
     }
-    public void StartLevel()
+    public void StartLevelHuman()
     {
         if (gmc != null)
         {
-                gmc.StartLevel();
+                gmc.StartLevelHuman();
         }
         
+    }
+    public void StartLevelDemon()
+    {
+        if (gmc != null)
+        {
+            gmc.StartLevelDemon();
+        }
+
     }
 }
