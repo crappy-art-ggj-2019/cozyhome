@@ -35,6 +35,14 @@ public class UIManagerScript : MonoBehaviour
     public void filldistance(float distance)
     {
         Image distanceimage = Canvas.GetComponentInChildren<Image>();
+        if (distance > 0.5f)
+        {
+            distanceimage.color = Color.red;
+        }
+        else
+        {
+            distanceimage.color = Color.blue;
+        }
         distanceimage.fillAmount = distance;
     }
     public void setInventoryHUD(string text)
