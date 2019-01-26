@@ -18,7 +18,7 @@ public class HomeCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var gmc = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        var gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>();
         gmc.OnHouseEntry();
     }
 }
