@@ -12,14 +12,9 @@ public class UIManagerScript : MonoBehaviour
         Canvas = GameObject.Find("HUDCanvas").GetComponent<Canvas>();
     }
 
-    public void setScoreHUD(string text)
-    {
-        TextMeshProUGUI scoreText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        scoreText.text = text;
-    }
     public void setStateHUD(string text)
     {
-        TextMeshProUGUI stateText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        TextMeshProUGUI stateText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
         if (stateText != null)
         {
             stateText.text = text;
@@ -38,10 +33,5 @@ public class UIManagerScript : MonoBehaviour
             distanceimage.color = Color.blue;
         }
         distanceimage.fillAmount = distance;
-    }
-    public void setInventoryHUD(string text)
-    {
-        TextMeshProUGUI inventoryText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[2];
-        inventoryText.text = text;
     }
 }

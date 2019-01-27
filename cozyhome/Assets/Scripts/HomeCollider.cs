@@ -9,9 +9,10 @@ public class HomeCollider : MonoBehaviour
     public GameManagerScript gmc;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gmc.currentObjective == GameManagerScript.objective.TakeHome && collision.tag == "Attacker")
+        Debug.Log("Enter");
+        if (gmc.currentObjective == GameManagerScript.objective.TakeHome && collision.gameObject.tag == "Attacker")
         {
             AudioClip clip;
             
