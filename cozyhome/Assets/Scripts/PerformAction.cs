@@ -26,6 +26,11 @@ public class PerformAction : MonoBehaviour
             GetComponent<Image>().color = initialColor;
     }
 
+    public void SetColor(Color newColor)
+    {
+        initialColor = newColor;
+    }
+
     public void DoTheThing()
     {
         //print("Doing the thing!");
