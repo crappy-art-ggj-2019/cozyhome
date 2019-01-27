@@ -33,7 +33,7 @@ public class PerformAction : MonoBehaviour
 
     public void DoTheThing()
     {
-        Debug.Log("Doing the thing!");
+        //Debug.Log("Doing the thing!");
 
         if (Time.time > currentCoolDown)
         {
