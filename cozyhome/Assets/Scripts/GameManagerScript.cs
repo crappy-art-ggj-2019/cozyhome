@@ -92,6 +92,11 @@ public class GameManagerScript : IInitializable, IFixedTickable
 
     }
 
+    public void OnMeteor()
+    {
+        setState(GameState.GameOver);
+    }
+
     public void OnAttackerHouseEntry()
     {
         if (currentObjective == objective.DefendHome)
