@@ -153,7 +153,7 @@ public class GameManagerScript : IInitializable, IFixedTickable
             var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
             var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
             var human = GameObject.Find("/human");
-            var cowman = GameObject.Find("/cowman");
+            var cowman = GameObject.Find("/monster");
             var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
 
             // Set the different views and objectives

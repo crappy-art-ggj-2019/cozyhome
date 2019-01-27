@@ -24,8 +24,8 @@ public class DirectionFlipper : MonoBehaviour
         Vector2 currentLocation = this.transform.position;
         float xDirection = currentLocation.x - lastLocation.x;
 
-        Debug.Log(sinceChanged + "-" + Time.time);
-        Debug.Log(sinceChanged < Time.time);
+        //Debug.Log(sinceChanged + "-" + Time.time);
+        //Debug.Log(sinceChanged < Time.time);
         if (sinceChanged < Time.time)
         {
             if (directionLeft && xDirection > 0) FlipDirection(false);
