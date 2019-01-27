@@ -81,7 +81,8 @@ public class GameStartMechanicsScript : MonoBehaviour
     {
         if (signal.currentPlayerMode == playerEntity.Human)
         {
-            actions[0].GetComponent<Image>().color = defensiveC;
+            actions[0].GetComponent<PerformAction>().SetColor(defensiveC);
+
             foreach (Transform child in actions[0].transform)
             {
                 if (child.name == "ItemIcon")
@@ -90,7 +91,7 @@ public class GameStartMechanicsScript : MonoBehaviour
                     child.GetComponent<Image>().sprite = defensive;
             }
 
-            actions[1].GetComponent<Image>().color = offensiveC;
+            actions[1].GetComponent<PerformAction>().SetColor(defensiveC);
             foreach (Transform child in actions[1].transform)
             {
                 if (child.name == "ItemIcon")
@@ -99,7 +100,7 @@ public class GameStartMechanicsScript : MonoBehaviour
                     child.GetComponent<Image>().sprite = defensive;
             }
 
-            actions[2].GetComponent<Image>().color = offensiveC;
+            actions[2].GetComponent<PerformAction>().SetColor(offensiveC);
             foreach (Transform child in actions[2].transform)
             {
                 if (child.name == "ItemIcon")
@@ -110,7 +111,7 @@ public class GameStartMechanicsScript : MonoBehaviour
         }
         else   // playing monster
         {
-            actions[0].GetComponent<Image>().color = defensiveC;
+            actions[0].GetComponent<PerformAction>().SetColor(defensiveC);
             foreach (Transform child in actions[0].transform)
             {
                 if (child.name == "ItemIcon")
@@ -119,7 +120,7 @@ public class GameStartMechanicsScript : MonoBehaviour
                     child.GetComponent<Image>().sprite = defensive;
             }
 
-            actions[1].GetComponent<Image>().color = offensiveC;
+            actions[1].GetComponent<PerformAction>().SetColor(offensiveC);
             foreach (Transform child in actions[1].transform)
             {
                 if (child.name == "ItemIcon")
@@ -128,7 +129,7 @@ public class GameStartMechanicsScript : MonoBehaviour
                     child.GetComponent<Image>().sprite = offensive;
             }
 
-            actions[2].GetComponent<Image>().color = offensiveC;
+            actions[2].GetComponent<PerformAction>().SetColor(offensiveC);
             foreach (Transform child in actions[2].transform)
             {
                 if (child.name == "ItemIcon")
