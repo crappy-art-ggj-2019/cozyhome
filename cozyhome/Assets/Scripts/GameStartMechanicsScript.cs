@@ -51,7 +51,7 @@ public class GameStartMechanicsScript : MonoBehaviour
         var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
 
         for (int a = 1; a <= 3; a++)
-            actions.Add(GameObject.Find("HUDCanvas/Action" + a));
+            actions.Add(GameObject.Find("HUDCanvas/ActionBar/Action" + a));
 
         // Set the different views and objectives
         if (signal.currentPlayerMode == playerEntity.Human)
