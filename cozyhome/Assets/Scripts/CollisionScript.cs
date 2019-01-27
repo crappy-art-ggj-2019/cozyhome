@@ -19,13 +19,11 @@ public class CollisionScript : MonoBehaviour
         {
             // if not supposed to block
             if (!blocks.Contains(collision.gameObject.name))
-            {
                 // ignore this specific collision
                 Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), ourCollider);
-            }
 
             // if it's a player and supposed to block
-            if (/*block == "Attacker" &&*/ collision.gameObject.name == block)
+            if (collision.gameObject.GetComponent<PlayerBehaviour>() != null && collision.gameObject.name == block)
                 // call its "StopMoving" function to make it stop moving
                 collision.gameObject.GetComponent<PlayerBehaviour>().StopMoving();
         }
