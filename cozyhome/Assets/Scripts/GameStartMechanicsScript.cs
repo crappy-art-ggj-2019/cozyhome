@@ -20,6 +20,13 @@ public class GameStartMechanicsScript : MonoBehaviour
     public Sprite defensive;
     public Sprite offensive;
 
+    public GameObject humanBarricade;
+    public GameObject humanTrap;
+    public GameObject humanStone;
+    public GameObject monsterBarricade;
+    public GameObject monsterLightning;
+    public GameObject monsterMeteor;
+
     List<GameObject> actions = new List<GameObject>();
     private Color defensiveC = new Color(61, 136, 207);
     private Color offensiveC = new Color(192, 44, 10);
@@ -79,9 +86,15 @@ public class GameStartMechanicsScript : MonoBehaviour
 
     private void SetActions(LevelStartSignal signal)
     {
+        Transform human = GameObject.Find("/human").transform;
+        Transform monster = GameObject.Find("/monster").transform;
+
         if (signal.currentPlayerMode == playerEntity.Human)
         {
             actions[0].GetComponent<PerformAction>().SetColor(defensiveC);
+            actions[0].GetComponent<PerformAction>().ownerObject = human;
+            actions[0].GetComponent<PerformAction>().resolutionPrefab = humanBarricade;
+            actions[0].GetComponent<PerformAction>().coolDown = 3;
 
             foreach (Transform child in actions[0].transform)
             {
@@ -92,6 +105,10 @@ public class GameStartMechanicsScript : MonoBehaviour
             }
 
             actions[1].GetComponent<PerformAction>().SetColor(defensiveC);
+            actions[1].GetComponent<PerformAction>().ownerObject = human;
+            actions[1].GetComponent<PerformAction>().resolutionPrefab = humanTrap;
+            actions[1].GetComponent<PerformAction>().coolDown = 5;
+
             foreach (Transform child in actions[1].transform)
             {
                 if (child.name == "ItemIcon")
@@ -101,6 +118,10 @@ public class GameStartMechanicsScript : MonoBehaviour
             }
 
             actions[2].GetComponent<PerformAction>().SetColor(offensiveC);
+            actions[2].GetComponent<PerformAction>().ownerObject = human;
+            actions[2].GetComponent<PerformAction>().resolutionPrefab = humanStone;
+            actions[2].GetComponent<PerformAction>().coolDown = 7;
+
             foreach (Transform child in actions[2].transform)
             {
                 if (child.name == "ItemIcon")
@@ -112,6 +133,10 @@ public class GameStartMechanicsScript : MonoBehaviour
         else   // playing monster
         {
             actions[0].GetComponent<PerformAction>().SetColor(defensiveC);
+            actions[0].GetComponent<PerformAction>().ownerObject = monster;
+            actions[0].GetComponent<PerformAction>().resolutionPrefab = monsterBarricade;
+            actions[0].GetComponent<PerformAction>().coolDown = 3;
+
             foreach (Transform child in actions[0].transform)
             {
                 if (child.name == "ItemIcon")
@@ -121,6 +146,10 @@ public class GameStartMechanicsScript : MonoBehaviour
             }
 
             actions[1].GetComponent<PerformAction>().SetColor(offensiveC);
+            actions[1].GetComponent<PerformAction>().ownerObject = monster;
+            actions[1].GetComponent<PerformAction>().resolutionPrefab = monsterLightning;
+            actions[1].GetComponent<PerformAction>().coolDown = 7;
+
             foreach (Transform child in actions[1].transform)
             {
                 if (child.name == "ItemIcon")
@@ -130,6 +159,10 @@ public class GameStartMechanicsScript : MonoBehaviour
             }
 
             actions[2].GetComponent<PerformAction>().SetColor(offensiveC);
+            actions[2].GetComponent<PerformAction>().ownerObject = monster;
+            actions[2].GetComponent<PerformAction>().resolutionPrefab = monsterMeteor;
+            actions[2].GetComponent<PerformAction>().coolDown = 20;
+
             foreach (Transform child in actions[2].transform)
             {
                 if (child.name == "ItemIcon")
