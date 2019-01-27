@@ -41616,7 +41616,6 @@ MonoBehaviour:
     type: 3}
   monsterMeteor: {fileID: 4206044409055997794, guid: 3aae7bfff0e6a3e4cb36565be6475e9a,
     type: 3}
-  goalText: {fileID: 6999451999705427054}
 --- !u!1 &1769000181
 GameObject:
   m_ObjectHideFlags: 0
@@ -42659,7 +42658,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c36167b7ff206bb428b334809b7f9fe3, type: 3}
-<<<<<<< HEAD
 --- !u!1001 &7240111597173315272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42729,17 +42727,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc7175527314ee44916867a52248eda, type: 3}
-=======
---- !u!114 &6999451999705427054 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6999451999705427054, guid: 2c547563d25d9a045943fab0aec797d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1191120689}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> ddbcff1d66ed936ca6335a0db4795b0511690cbc
