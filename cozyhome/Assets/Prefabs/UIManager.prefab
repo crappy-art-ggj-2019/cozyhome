@@ -1786,7 +1786,9 @@ MonoBehaviour:
   resolutionPrefab: {fileID: 2157121199886114738, guid: 259a01fd35fe2c64480c4027642a9143,
     type: 3}
   coolDown: 3
-  coolDownColor: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 1}
+  coolDownColor:
+    serializedVersion: 2
+    rgba: 4283782485
 --- !u!1 &633651148627986139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,7 +1936,9 @@ MonoBehaviour:
   resolutionPrefab: {fileID: 7038030457069457382, guid: b20accdeabf58a54283d778d0ae3848e,
     type: 3}
   coolDown: 15
-  coolDownColor: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 1}
+  coolDownColor:
+    serializedVersion: 2
+    rgba: 4283782485
 --- !u!1 &1069359072130812879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,7 +2160,9 @@ MonoBehaviour:
   resolutionPrefab: {fileID: 8141096639903359915, guid: f283c395fe7a5c04bbbdb7f64bdad2c9,
     type: 3}
   coolDown: 6
-  coolDownColor: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 1}
+  coolDownColor:
+    serializedVersion: 2
+    rgba: 4283782485
 --- !u!1 &1849708980374892564
 GameObject:
   m_ObjectHideFlags: 0

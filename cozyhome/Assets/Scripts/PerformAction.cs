@@ -8,14 +8,14 @@ public class PerformAction : MonoBehaviour
     public Transform ownerObject;
     public GameObject resolutionPrefab;
     public float coolDown;
-    public Color coolDownColor;
+    public Color32 coolDownColor;
 
-    private Color initialColor;
+    private Color32 initialColor;
     private float currentCoolDown = 0;
 
     void Start()
     {
-        initialColor = GetComponent<Image>().color;
+
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class PerformAction : MonoBehaviour
             GetComponent<Image>().color = initialColor;
     }
 
-    public void SetColor(Color newColor)
+    public void SetColor(Color32 newColor)
     {
         initialColor = newColor;
     }
