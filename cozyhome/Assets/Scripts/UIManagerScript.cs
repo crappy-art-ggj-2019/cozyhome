@@ -1,23 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIManagerScript : MonoBehaviour
 {
     Canvas Canvas;
+    
     // Start is called before the first frame update
     void Start()
     {
         Canvas = GameObject.Find("HUDCanvas").GetComponent<Canvas>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void setScoreHUD(string text)
     {
         TextMeshProUGUI scoreText = Canvas.GetComponentsInChildren<TextMeshProUGUI>()[0];

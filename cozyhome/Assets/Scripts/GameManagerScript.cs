@@ -83,11 +83,6 @@ public class GameManagerScript : IInitializable, IFixedTickable
     {
 
     }
-    public void QuitGame()
-    {
-        Debug.Log("Quit game");
-        Application.Quit();
-    }
 
     public void OnAttackerHouseEntry()
     {

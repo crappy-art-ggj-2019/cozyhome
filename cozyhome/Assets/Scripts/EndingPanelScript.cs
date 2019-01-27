@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 public class EndingPanelScript : MonoBehaviour
@@ -15,6 +13,6 @@ public class EndingPanelScript : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        SceneLoader.QuitGame();
     }
 }
