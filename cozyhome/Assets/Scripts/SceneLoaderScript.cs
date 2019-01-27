@@ -5,7 +5,8 @@ public class SceneLoaderScript
 {
     public void EnsureMainMenu()
     {
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+        var activeScene = SceneManager.GetActiveScene().name;
+        if (activeScene != "MainMenu")
             SceneManager.LoadScene("MainMenu");
     }
     
