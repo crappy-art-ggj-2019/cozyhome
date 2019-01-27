@@ -36620,8 +36620,32 @@ PrefabInstance:
       propertyPath: ownerObject
       value: 
       objectReference: {fileID: 2051440579}
+    - target: {fileID: 1871125987, guid: 2c547563d25d9a045943fab0aec797d4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995313392, guid: 2c547563d25d9a045943fab0aec797d4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995313392, guid: 2c547563d25d9a045943fab0aec797d4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c547563d25d9a045943fab0aec797d4, type: 3}
+--- !u!114 &1191120690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6999451999705427054, guid: 2c547563d25d9a045943fab0aec797d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1191120689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1227596409
 GameObject:
   m_ObjectHideFlags: 0
@@ -41616,6 +41640,7 @@ MonoBehaviour:
     type: 3}
   monsterMeteor: {fileID: 4206044409055997794, guid: 3aae7bfff0e6a3e4cb36565be6475e9a,
     type: 3}
+  goalText: {fileID: 1191120690}
 --- !u!1 &1769000181
 GameObject:
   m_ObjectHideFlags: 0
