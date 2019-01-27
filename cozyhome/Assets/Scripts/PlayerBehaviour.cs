@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [Inject]
+    public GameManagerScript gmc;
+
     public float movementSpeed = 5;
     float maxDistance = 30f;
-    GameManagerScript gmc;
+    
     // where to move to
     private Vector3 targetPosition;
   
@@ -17,10 +19,6 @@ public class PlayerBehaviour : MonoBehaviour
         // stop player from moving to 0,0 by default
         targetPosition = transform.position;
         audioSrc = GetComponent<AudioSource>();
-        
-        
-
-        
     }
 
     // Update is called once per frame
@@ -71,12 +69,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         // what is the distance to the center. The closer you get, the more close you are to winning
         float distance = Vector2.Distance(transform.position, Vector2.zero);
-        gmc = GameObject.Find("GameManagerController").GetComponent<GameManagerScript>();
-        //Debug.Log(distance);
-        if (gmc!=null)
-        {
-            gmc.OnMoveCloser(1 - distance / maxDistance);
-        }
-        
+        gmc.OnMoveCloser(1 - distance / maxDistance);
     }
 }

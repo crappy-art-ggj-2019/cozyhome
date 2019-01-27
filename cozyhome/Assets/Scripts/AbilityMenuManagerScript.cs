@@ -1,23 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 public class AbilityMenuManagerScript : MonoBehaviour
 {
-    GameManagerScript gmc;
+    [Inject]
+    public GameManagerScript gmc;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartLevel()
     {

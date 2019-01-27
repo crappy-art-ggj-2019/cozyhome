@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 public class HumanAIScript : MonoBehaviour
 {
+    [Inject]
+    public GameManagerScript gmc;
+
     float[] direction;
     private Rigidbody2D ourRigidbody2D;
-    private GameManagerScript gmc;
     [SerializeField] float prefdist,distancetogoal;
 
     // Start is called before the first frame update
@@ -14,7 +15,6 @@ public class HumanAIScript : MonoBehaviour
     {
         direction = new float[2];
         ourRigidbody2D = GetComponent<Rigidbody2D>();
-        gmc = GameObject.Find("/GameManagerController").GetComponent<GameManagerScript>();
     }
 
     void randomizeDirection()
