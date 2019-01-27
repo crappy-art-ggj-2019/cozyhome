@@ -5,7 +5,7 @@ public class GameManagerScript : MonoBehaviour
 {
     public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon, SecretFound, SecretDestroyed }
 
-    public enum playerEntity { Human, Demon }
+    public enum playerEntity { Human, Cowman }
     public enum objective { TakeHome, DefendHome }
 
     private const float gameEndingDisplayTime = 3f;
@@ -82,10 +82,10 @@ public class GameManagerScript : MonoBehaviour
         setState(GameState.Selection);
     }
 
-    public void StartLevelDemon()
+    public void StartLevelCowman()
     {
-        Debug.Log("Startlevel demon");
-        currentPlayerMode = playerEntity.Demon;
+        Debug.Log("Startlevel cowman");
+        currentPlayerMode = playerEntity.Cowman;
         setState(GameState.Selection);
     }
 
@@ -185,14 +185,14 @@ public class GameManagerScript : MonoBehaviour
             var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
             var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
             var human = GameObject.Find("/human");
-            var monster = GameObject.Find("/monster");
+            var monster = GameObject.Find("/cowman");
             var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
 
             // Set the different views and objectives
             if (currentPlayerMode == playerEntity.Human)
             {
                 cam.Follow = human.transform;
-                monster.AddComponent<MonsterAIScript>();
+                monster.AddComponent<CowmanAIScript>();
                 human.AddComponent<PlayerBehaviour>();
             }
             else
@@ -203,7 +203,7 @@ public class GameManagerScript : MonoBehaviour
             }
 
             if ((currentPlayerMode == playerEntity.Human && currentObjective == objective.TakeHome) 
-                || (currentPlayerMode == playerEntity.Demon && currentObjective == objective.DefendHome))
+                || (currentPlayerMode == playerEntity.Cowman && currentObjective == objective.DefendHome))
             {
                 human.transform.position = startPostionAttacker.position;
                 monster.transform.position = startPostionDefender.position;

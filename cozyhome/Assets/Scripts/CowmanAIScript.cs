@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterAIScript : MonoBehaviour
+public class CowmanAIScript : MonoBehaviour
 {
     float[] direction;
     private Rigidbody2D ourRigidbody2D;
