@@ -24,7 +24,7 @@ public class MainMenuManagerScript : MonoBehaviour
     {
         if (gmc != null)
         {
-            gmc.StartLevelDemon();
+            gmc.StartLevelCowman();
         }
 
     }
