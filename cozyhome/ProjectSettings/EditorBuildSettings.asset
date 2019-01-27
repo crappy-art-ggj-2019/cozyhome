@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AbilityMenu.unity
     guid: bbdfe061f9b21c94ba4b7dc8669b57b9
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 82fff60f0532da544bdbc89bef4797d0
+  - enabled: 1
+    path: Assets/Scenes/SecretEnding.unity
+    guid: 39874f93cc2840949b96718376046fa5
+  - enabled: 1
+    path: Assets/Scenes/SecretEndingBad.unity
+    guid: 549df51a7b4dd4544ac262ae62caffcc
   m_configObjects: {}

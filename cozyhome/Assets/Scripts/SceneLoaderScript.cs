@@ -27,5 +27,9 @@ public class SceneLoaderScript : MonoBehaviour
     {
         SceneManager.LoadScene("SecretEnding");
     }
+    public void LoadSecretBLevel()
+    {
+        SceneManager.LoadScene("SecretEndingBad");
+    }
     
 }

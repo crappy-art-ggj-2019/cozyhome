@@ -7,7 +7,7 @@ public class MonsterAIScript : MonoBehaviour
     float[] direction;
     private Rigidbody2D ourRigidbody2D;
     private GameManagerScript gmc;
-
+    [SerializeField] float prefdist, distancetogoal;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +25,21 @@ public class MonsterAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        prefdist = distancetogoal;
+
         if (ourRigidbody2D.velocity == Vector2.zero)
         {
             randomizeDirection();
-            
+
         }
         ourRigidbody2D.velocity = new Vector2(direction[0], direction[1]);
+
+        distancetogoal = Vector2.Distance(transform.position, Vector2.zero);
+        if (distancetogoal > prefdist)
+        {
+            ourRigidbody2D.velocity = Vector2.MoveTowards(transform.position, Vector2.zero, 10f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

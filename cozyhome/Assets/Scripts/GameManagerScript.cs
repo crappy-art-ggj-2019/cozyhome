@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon }
+    public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon, SecretFound, SecretDestroyed }
 
     public enum playerEntity { Human, Demon }
     public enum objective { TakeHome, DefendHome }
@@ -99,7 +99,14 @@ public class GameManagerScript : MonoBehaviour
         Debug.Log("Start Menu");
         setState(GameState.MainMenu);
     }
-    
+    public void Stashway()
+    {
+        
+    }
+    public void Stashback()
+    {
+
+    }
     public void QuitGame()
     {
         Debug.Log("Quit game");
@@ -113,6 +120,7 @@ public class GameManagerScript : MonoBehaviour
         else
             setState(GameState.GameWon);
     }
+    //distance to goal
     public void OnMoveCloser(float distance)
     {
         uiM = GameObject.Find("UIManager")?.GetComponent<UIManagerScript>();
