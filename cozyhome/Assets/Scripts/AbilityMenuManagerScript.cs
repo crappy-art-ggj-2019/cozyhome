@@ -13,7 +13,5 @@ public class AbilityMenuManagerScript : MonoBehaviour
         {
             gmc.StartGameplay();
         }
-
     }
-
 }

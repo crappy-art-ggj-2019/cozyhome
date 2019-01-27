@@ -33,5 +33,9 @@ public class SceneLoaderScript
     {
         SceneManager.LoadScene("SecretEndingBad");
     }
-    
+    public void QuitGame()
+    {
+        Debug.Log("Quit game");
+        Application.Quit();
+    }
 }

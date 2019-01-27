@@ -20,6 +20,7 @@ public class GameManagerScript : IInitializable, IFixedTickable
     [SerializeField] UIManagerScript uiM;
     [SerializeField] playerEntity currentPlayerMode = playerEntity.Human;
     [SerializeField] public objective currentObjective = objective.DefendHome;
+    AudioClip humanButtonClip, cowButtonClip;
 
 
     float gameEndingDisplaying;
@@ -53,6 +54,8 @@ public class GameManagerScript : IInitializable, IFixedTickable
 
     public void StartLevelHuman()
     {
+        humanButtonClip = Resources.Load<AudioClip>("footstep00");
+        AudioSource.PlayClipAtPoint(humanButtonClip, new Vector3(0, 0,0));
         Debug.Log("Startlevel human");
         currentPlayerMode = playerEntity.Human;
         setState(GameState.Selection);
@@ -60,6 +63,8 @@ public class GameManagerScript : IInitializable, IFixedTickable
 
     public void StartLevelCowman()
     {
+        cowButtonClip = Resources.Load<AudioClip>("cowbell");
+        AudioSource.PlayClipAtPoint(cowButtonClip, new Vector3(0,0,0));
         Debug.Log("Startlevel cowman");
         currentPlayerMode = playerEntity.Cowman;
         setState(GameState.Selection);
@@ -82,11 +87,6 @@ public class GameManagerScript : IInitializable, IFixedTickable
     public void Stashback()
     {
 
-    }
-    public void QuitGame()
-    {
-        Debug.Log("Quit game");
-        Application.Quit();
     }
 
     public void OnAttackerHouseEntry()
@@ -158,7 +158,7 @@ public class GameManagerScript : IInitializable, IFixedTickable
             var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
             var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
             var human = GameObject.Find("/human");
-            var cowman = GameObject.Find("/cowman");
+            var cowman = GameObject.Find("/monster");
             var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
 
             // Set the different views and objectives

@@ -6,6 +6,7 @@ public class CollisionScript : MonoBehaviour
 {
     public List<string> blocks;
     private Collider2D ourCollider;
+    AudioClip bump;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +20,12 @@ public class CollisionScript : MonoBehaviour
         {
             // if not supposed to block
             if (!blocks.Contains(collision.gameObject.name))
-            {
                 // ignore this specific collision
                 Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), ourCollider);
-            }
-
+            bump = Resources.Load<AudioClip>("footstep00");
+            AudioSource.PlayClipAtPoint(bump, new Vector3(0, 0, 0));
             // if it's a player and supposed to block
-            if (/*block == "Attacker" &&*/ collision.gameObject.name == block)
+            if (collision.gameObject.GetComponent<PlayerBehaviour>() != null && collision.gameObject.name == block)
                 // call its "StopMoving" function to make it stop moving
                 collision.gameObject.GetComponent<PlayerBehaviour>().StopMoving();
         }
