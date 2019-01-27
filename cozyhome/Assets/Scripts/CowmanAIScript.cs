@@ -28,21 +28,24 @@ public class CowmanAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //store previous distance.
         prefdist = distancetogoal;
 
+        
         if (ourRigidbody2D.velocity == Vector2.zero)
         {
-            randomizeDirection();
+            
 
         }
-        ourRigidbody2D.velocity = new Vector2(direction[0], direction[1]);
+        randomizeDirection();
 
         distancetogoal = Vector2.Distance(transform.position, Vector2.zero);
         if (distancetogoal > prefdist)
         {
             ourRigidbody2D.velocity = Vector2.MoveTowards(transform.position, Vector2.zero, 10f);
         }
+        else
+        { ourRigidbody2D.velocity = new Vector2(direction[0], direction[1]); }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
