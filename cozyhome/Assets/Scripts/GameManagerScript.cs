@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class GameManagerScript : IInitializable, IFixedTickable
+public class GameManagerScript : IInitializable, ITickable
 {
     public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon, SecretFound, SecretDestroyed }
 
@@ -42,7 +42,7 @@ public class GameManagerScript : IInitializable, IFixedTickable
     }
 
     // Update is called once per frame
-    public void FixedTick()
+    public void Tick()
     {
         if (currentstate == GameState.GameCycle)
         {
@@ -50,8 +50,11 @@ public class GameManagerScript : IInitializable, IFixedTickable
         }
         else if (currentstate == GameState.GameOver || currentstate == GameState.GameWon)
         {
-            if (Time.time > gameEndingDisplaying)
+            if (Time.unscaledTime > gameEndingDisplaying)
+            {
+                Time.timeScale = 1;
                 setState(GameState.MainMenu);
+            }
         }
     }
 
@@ -143,14 +146,16 @@ public class GameManagerScript : IInitializable, IFixedTickable
             currentstate = newState;
             uiM = GameObject.Find("/UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(newState.ToString());
-            gameEndingDisplaying = Time.time + gameEndingDisplayTime;
+            gameEndingDisplaying = Time.unscaledTime + gameEndingDisplayTime;
+            Time.timeScale = 0;
         }
         else if (currentstate == GameState.GameCycle && newState == GameState.GameWon)
         {
             currentstate = newState;
             uiM = GameObject.Find("/UIManager").GetComponent<UIManagerScript>();
             uiM.setStateHUD(newState.ToString());
-            gameEndingDisplaying = Time.time + gameEndingDisplayTime;
+            gameEndingDisplaying = Time.unscaledTime + gameEndingDisplayTime;
+            Time.timeScale = 0;
         }
     }
 }

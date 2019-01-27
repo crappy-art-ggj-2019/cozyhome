@@ -27,9 +27,11 @@ public class GameStartMechanicsScript : MonoBehaviour
     public GameObject monsterLightning;
     public GameObject monsterMeteor;
 
+    public Text goalText;
+
     List<GameObject> actions = new List<GameObject>();
-    private Color defensiveC = new Color(61, 136, 207);
-    private Color offensiveC = new Color(192, 44, 10);
+    private Color32 defensiveC = new Color32(61, 136, 207, 255);
+    private Color32 offensiveC = new Color32(192, 44, 10, 255);
 
 
     public void OnGameStartSignal(LevelStartSignal signal)
@@ -40,7 +42,9 @@ public class GameStartMechanicsScript : MonoBehaviour
         else
             signal.currentObjective = objective.TakeHome;
 
-        var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
+        var startPostionsAttacker = GameObject.Find("/StartingPositionsAttacker").GetComponentsInChildren<Transform>();
+        var startPostionAttacker = startPostionsAttacker[Random.Range(0, startPostionsAttacker.Length)];
+
         var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
         var human = GameObject.Find("/human");
         var cowman = GameObject.Find("/monster");
@@ -79,6 +83,11 @@ public class GameStartMechanicsScript : MonoBehaviour
             human.tag = "Defender";
             cowman.tag = "Attacker";
         }
+
+        if (signal.currentObjective == objective.TakeHome)
+            goalText.text = "Take your home back!";
+        else
+            goalText.text = "Defend your home!";
 
         SetActions(signal);
     }
