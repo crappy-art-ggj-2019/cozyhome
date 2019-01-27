@@ -1,7 +1,9 @@
-﻿using Cinemachine;
+﻿using Assets.Scripts.DI_Framework;
+using Cinemachine;
 using UnityEngine;
+using Zenject;
 
-public class GameManagerScript : MonoBehaviour
+public class GameManagerScript : IInitializable, IFixedTickable
 {
     public enum GameState { MainMenu, Preloader, Selection, GameCycle, Pause, GameOver, GameWon, SecretFound, SecretDestroyed }
 
@@ -9,9 +11,8 @@ public class GameManagerScript : MonoBehaviour
     public enum objective { TakeHome, DefendHome }
 
     private const float gameEndingDisplayTime = 3f;
-
-    
-
+    private readonly SceneLoaderScript sceneLoader;
+    private readonly InjectorHelper injectorHelper;
     [SerializeField] Camera playView;
     [SerializeField] GameState currentstate = GameState.MainMenu;
     [SerializeField] int highScore;
@@ -22,47 +23,22 @@ public class GameManagerScript : MonoBehaviour
 
 
     float gameEndingDisplaying;
-    
-    private void Awake()
-    {
-        //Making Gamestate global, initial call in menu
-        
-        var doWork = SetupSingleton();
-        if (!doWork)
-            return;
 
+    public GameManagerScript(SceneLoaderScript sceneLoader, InjectorHelper injectorHelper)
+    {
+        this.sceneLoader = sceneLoader;
+        this.injectorHelper = injectorHelper;
+    }
+
+    public void Initialize()
+    {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
 
-        if (currentstate == GameState.MainMenu && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        sceneLoader.EnsureMainMenu();
     }
-
-    private bool SetupSingleton()
-    {
-        if (FindObjectsOfType(GetType()).Length > 1)
-        {
-            Destroy(gameObject);
-            return false;
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-            return true;
-        }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (PlayerPrefs.HasKey("Gamestate"))
-        {
-            //currentstate = PlayerPrefs.GetInt("Currentstate");
-        }
-        //initialize states
-    }
-
 
     // Update is called once per frame
-    void Update()
+    public void FixedTick()
     {
         if (currentstate == GameState.GameCycle)
         {
@@ -141,21 +117,18 @@ public class GameManagerScript : MonoBehaviour
         if (newState == GameState.MainMenu)
         {
             currentstate = newState;
-            var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
-            sl.LoadMenuScene();
+            sceneLoader.LoadMenuScene();
         }
         else if (newState == GameState.Selection)
         {
             currentstate = newState;
-            var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
-            sl.LoadAbilityScene();
+            sceneLoader.LoadAbilityScene();
         }
         else if (newState == GameState.GameCycle)
         {
             currentstate = newState;
             Debug.Log("state:" + currentstate + " gamestate should be " + GameState.GameCycle);
-            var sl = GameObject.Find("/SceneLoader").GetComponent<SceneLoaderScript>();
-            sl.LoadGameScene();
+            sceneLoader.LoadGameScene();
         }
         else if (currentstate == GameState.GameCycle && newState == GameState.GameOver)
         {
@@ -185,37 +158,38 @@ public class GameManagerScript : MonoBehaviour
             var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
             var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
             var human = GameObject.Find("/human");
-            var monster = GameObject.Find("/cowman");
+            var cowman = GameObject.Find("/cowman");
             var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
 
             // Set the different views and objectives
             if (currentPlayerMode == playerEntity.Human)
             {
                 cam.Follow = human.transform;
-                monster.AddComponent<CowmanAIScript>();
-                human.AddComponent<PlayerBehaviour>();
+
+                injectorHelper.AddComponentToGameObject<CowmanAIScript>(cowman);
+                injectorHelper.AddComponentToGameObject<PlayerBehaviour>(human);
             }
             else
             {
-                cam.Follow = monster.transform;
-                human.AddComponent<HumanAIScript>();
-                monster.AddComponent<PlayerBehaviour>();
+                cam.Follow = cowman.transform;
+                injectorHelper.AddComponentToGameObject<HumanAIScript>(human);
+                injectorHelper.AddComponentToGameObject<PlayerBehaviour>(cowman);
             }
 
             if ((currentPlayerMode == playerEntity.Human && currentObjective == objective.TakeHome) 
                 || (currentPlayerMode == playerEntity.Cowman && currentObjective == objective.DefendHome))
             {
                 human.transform.position = startPostionAttacker.position;
-                monster.transform.position = startPostionDefender.position;
+                cowman.transform.position = startPostionDefender.position;
                 human.tag = "Attacker";
-                monster.tag = "Defender";
+                cowman.tag = "Defender";
             }
             else
             {
                 human.transform.position = startPostionDefender.position;
-                monster.transform.position = startPostionAttacker.position;
+                cowman.transform.position = startPostionAttacker.position;
                 human.tag = "Defender";
-                monster.tag = "Attacker";
+                cowman.tag = "Attacker";
             }
         }
     }

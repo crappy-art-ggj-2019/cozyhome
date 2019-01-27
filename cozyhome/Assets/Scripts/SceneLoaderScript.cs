@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class SceneLoaderScript : MonoBehaviour
+public class SceneLoaderScript
 {
-    
+    public void EnsureMainMenu()
+    {
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+            SceneManager.LoadScene("MainMenu");
+    }
     
 
     // Start is called before the first frame update
