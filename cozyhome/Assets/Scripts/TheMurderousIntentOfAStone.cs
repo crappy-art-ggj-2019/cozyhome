@@ -6,7 +6,8 @@ public class TheMurderousIntentOfAStone : MonoBehaviour
 {
     public float speed;
     private Transform victim;
-
+    [SerializeField] private int damage;
+    [SerializeField] private GameObject origin;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,14 @@ public class TheMurderousIntentOfAStone : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, victim.position, speed * Time.deltaTime);
     }
-
+    public void setOrigin(GameObject originator)
+    {
+        Debug.Log("originator: " + originator.name);
+        origin = originator;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.transform == victim)
         {
             // do the killing thing
