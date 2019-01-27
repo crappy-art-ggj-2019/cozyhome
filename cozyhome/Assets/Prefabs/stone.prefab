@@ -132,4 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  victim: {fileID: 0}
+  nameOnTheBullet: monster
+  damage: 0
+  origin: {fileID: 0}

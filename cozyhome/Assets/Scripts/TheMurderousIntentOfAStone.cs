@@ -5,14 +5,17 @@ using UnityEngine;
 public class TheMurderousIntentOfAStone : MonoBehaviour
 {
     public float speed;
+    public string nameOnTheBullet;
+
     private Transform victim;
     [SerializeField] private int damage;
     [SerializeField] private GameObject origin;
+
     // Start is called before the first frame update
     void Start()
     {
         // target the "Enemy" that was spawned first
-        victim = GameObject.Find("monster").transform;
+        victim = GameObject.Find(nameOnTheBullet).transform;
     }
 
     // Update is called once per frame
