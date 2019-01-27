@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.DI_Framework;
+﻿using System.Collections.Generic;
+using Assets.Scripts.DI_Framework;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class GameManagerScript : IInitializable, IFixedTickable
@@ -13,27 +15,29 @@ public class GameManagerScript : IInitializable, IFixedTickable
     private const float gameEndingDisplayTime = 3f;
     private readonly SceneLoaderScript sceneLoader;
     private readonly InjectorHelper injectorHelper;
+    private readonly SignalBus signalBus;
+    private readonly GameStartMechanicsScript gameStartMechanics;
     [SerializeField] Camera playView;
-    [SerializeField] GameState currentstate = GameState.MainMenu;
+    [SerializeField] public GameState currentstate = GameState.MainMenu;
     [SerializeField] int highScore;
     [SerializeField] PlayField playField;
     [SerializeField] UIManagerScript uiM;
-    [SerializeField] playerEntity currentPlayerMode = playerEntity.Human;
+    [SerializeField] public playerEntity currentPlayerMode = playerEntity.Human;
     [SerializeField] public objective currentObjective = objective.DefendHome;
+    
 
 
     float gameEndingDisplaying;
 
-    public GameManagerScript(SceneLoaderScript sceneLoader, InjectorHelper injectorHelper)
+    public GameManagerScript(SceneLoaderScript sceneLoader, InjectorHelper injectorHelper, SignalBus signalBus)
     {
         this.sceneLoader = sceneLoader;
         this.injectorHelper = injectorHelper;
+        this.signalBus = signalBus;
     }
 
     public void Initialize()
     {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-
         sceneLoader.EnsureMainMenu();
     }
 
@@ -139,57 +143,5 @@ public class GameManagerScript : IInitializable, IFixedTickable
             uiM.setStateHUD(newState.ToString());
             gameEndingDisplaying = Time.time + gameEndingDisplayTime;
         }
-    }
-
-    private void AfterSceneLoad()
-    {
-        if (currentstate == GameState.GameCycle)
-        {
-            if (currentObjective == objective.TakeHome)
-                currentObjective = objective.DefendHome;
-            else 
-                currentObjective = objective.TakeHome;
-
-            var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
-            var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
-            var human = GameObject.Find("/human");
-            var cowman = GameObject.Find("/monster");
-            var cam = GameObject.Find("/CM vcam1").GetComponent<CinemachineVirtualCamera>();
-
-            // Set the different views and objectives
-            if (currentPlayerMode == playerEntity.Human)
-            {
-                cam.Follow = human.transform;
-
-                injectorHelper.AddComponentToGameObject<CowmanAIScript>(cowman);
-                injectorHelper.AddComponentToGameObject<PlayerBehaviour>(human);
-            }
-            else
-            {
-                cam.Follow = cowman.transform;
-                injectorHelper.AddComponentToGameObject<HumanAIScript>(human);
-                injectorHelper.AddComponentToGameObject<PlayerBehaviour>(cowman);
-            }
-
-            if ((currentPlayerMode == playerEntity.Human && currentObjective == objective.TakeHome) 
-                || (currentPlayerMode == playerEntity.Cowman && currentObjective == objective.DefendHome))
-            {
-                human.transform.position = startPostionAttacker.position;
-                cowman.transform.position = startPostionDefender.position;
-                human.tag = "Attacker";
-                cowman.tag = "Defender";
-            }
-            else
-            {
-                human.transform.position = startPostionDefender.position;
-                cowman.transform.position = startPostionAttacker.position;
-                human.tag = "Defender";
-                cowman.tag = "Attacker";
-            }
-        }
-    }
-    private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
-    {
-        AfterSceneLoad();
     }
 }
