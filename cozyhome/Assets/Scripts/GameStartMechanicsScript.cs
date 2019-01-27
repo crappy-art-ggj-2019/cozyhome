@@ -27,6 +27,8 @@ public class GameStartMechanicsScript : MonoBehaviour
     public GameObject monsterLightning;
     public GameObject monsterMeteor;
 
+    public Text goalText;
+
     List<GameObject> actions = new List<GameObject>();
     private Color32 defensiveC = new Color32(61, 136, 207, 255);
     private Color32 offensiveC = new Color32(192, 44, 10, 255);
@@ -81,6 +83,11 @@ public class GameStartMechanicsScript : MonoBehaviour
             human.tag = "Defender";
             cowman.tag = "Attacker";
         }
+
+        if (signal.currentObjective == objective.TakeHome)
+            goalText.text = "Take your home back!";
+        else
+            goalText.text = "Defend your home!";
 
         SetActions(signal);
     }
