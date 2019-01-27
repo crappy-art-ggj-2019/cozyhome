@@ -35,8 +35,6 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void movePlayer()
     {
-        print(Input.GetMouseButtonDown(0) + ", " + (Input.mousePosition.y >= Screen.height * 144 / 720));
-
         if (Input.GetMouseButtonDown(0) && Input.mousePosition.y >= Screen.height * 144 / 720)
         {
             // set targetPosition to the mouseposition relative to the screen
