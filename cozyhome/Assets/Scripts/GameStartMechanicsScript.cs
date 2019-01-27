@@ -28,8 +28,8 @@ public class GameStartMechanicsScript : MonoBehaviour
     public GameObject monsterMeteor;
 
     List<GameObject> actions = new List<GameObject>();
-    private Color defensiveC = new Color(61, 136, 207);
-    private Color offensiveC = new Color(192, 44, 10);
+    private Color32 defensiveC = new Color32(61, 136, 207, 255);
+    private Color32 offensiveC = new Color32(192, 44, 10, 255);
 
 
     public void OnGameStartSignal(LevelStartSignal signal)
@@ -40,7 +40,9 @@ public class GameStartMechanicsScript : MonoBehaviour
         else
             signal.currentObjective = objective.TakeHome;
 
-        var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
+        var startPostionsAttacker = GameObject.Find("/StartingPositionsAttacker").GetComponentsInChildren<Transform>();
+        var startPostionAttacker = startPostionsAttacker[Random.Range(0, startPostionsAttacker.Length)];
+
         var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
         var human = GameObject.Find("/human");
         var cowman = GameObject.Find("/monster");
