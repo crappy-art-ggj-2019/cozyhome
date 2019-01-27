@@ -7,7 +7,9 @@ public class CollisionScript : MonoBehaviour
     public List<string> blocks;
     private Collider2D ourCollider;
     AudioClip bump;
-
+    [SerializeField] private int health = 100;
+    [SerializeField] bool newhit=true;
+    [SerializeField] ParticleSystem pspref;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,8 @@ public class CollisionScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //if health is 0 destroy object, if not, check if attacker is not already attacking. Then remove 10 points.
+        if (health < 1) { breaking(); } else { if (newhit == true&&collision.gameObject.tag=="Attacker") { health -= 10;newhit = false;  } }
         foreach (string block in blocks)
         {
             // if not supposed to block
@@ -32,5 +36,15 @@ public class CollisionScript : MonoBehaviour
             //audioSrc.PlayOneShot(bump, 1f);
             AudioSource.PlayClipAtPoint(bump, new Vector3(0, 0, 0));
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        newhit = true;
+    }
+    private void breaking()
+    {
+        Instantiate(pspref, transform);
+        Destroy(gameObject);
     }
 }
