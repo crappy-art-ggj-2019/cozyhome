@@ -40,7 +40,9 @@ public class GameStartMechanicsScript : MonoBehaviour
         else
             signal.currentObjective = objective.TakeHome;
 
-        var startPostionAttacker = GameObject.Find("/StartingPositionAttacker").transform;
+        var startPostionsAttacker = GameObject.Find("/StartingPositionsAttacker").GetComponentsInChildren<Transform>();
+        var startPostionAttacker = startPostionsAttacker[Random.Range(0, startPostionsAttacker.Length)];
+
         var startPostionDefender = GameObject.Find("/StartingPositionDefender").transform;
         var human = GameObject.Find("/human");
         var cowman = GameObject.Find("/monster");
