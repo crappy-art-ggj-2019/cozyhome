@@ -24,4 +24,8 @@ public class MainMenuManagerScript : MonoBehaviour
         }
 
     }
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }
